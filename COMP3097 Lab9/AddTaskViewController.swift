@@ -33,6 +33,10 @@ class AddTaskViewController: UIViewController {
         }
     }
 
+    @IBAction func viewTasksTapped(_ sender: UIButton) {
+        performSegue(withIdentifier: "showTaskListSegue", sender: self)
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showTaskListSegue",
            let taskListViewController = segue.destination as? TaskListViewController {

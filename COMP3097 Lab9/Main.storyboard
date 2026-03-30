@@ -35,9 +35,16 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="add-button">
                                 <rect key="frame" x="24" y="252" width="345" height="50"/>
-                                <state key="normal" title="Add Task &amp; View List"/>
+                                <state key="normal" title="Add Task"/>
                                 <connections>
                                     <action selector="addTaskTapped:" destination="add-task-vc" eventType="touchUpInside" id="add-task-action"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="view-button">
+                                <rect key="frame" x="24" y="318" width="345" height="44"/>
+                                <state key="normal" title="View Tasks"/>
+                                <connections>
+                                    <action selector="viewTasksTapped:" destination="add-task-vc" eventType="touchUpInside" id="view-task-action"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -51,6 +58,9 @@
                             <constraint firstItem="add-button" firstAttribute="trailing" secondItem="task-field" secondAttribute="trailing" id="c5"/>
                             <constraint firstItem="task-field" firstAttribute="top" secondItem="safe-add" secondAttribute="top" constant="120" id="c6"/>
                             <constraint firstAttribute="bottom" secondItem="add-button" secondAttribute="bottom" constant="550" id="c7"/>
+                            <constraint firstItem="view-button" firstAttribute="top" secondItem="add-button" secondAttribute="bottom" constant="16" id="c8"/>
+                            <constraint firstItem="view-button" firstAttribute="leading" secondItem="add-button" secondAttribute="leading" id="c9"/>
+                            <constraint firstItem="view-button" firstAttribute="trailing" secondItem="add-button" secondAttribute="trailing" id="c10"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add Task" id="nav-item-add"/>
