@@ -11,6 +11,8 @@ import CoreData
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var window: UIWindow?
+
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "COMP3097_Lab9")
         container.loadPersistentStores { _, error in
@@ -25,15 +27,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
-        true
-    }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let navController = storyboard.instantiateInitialViewController() as? UINavigationController else {
+            return false
+        }
 
-    func application(
-        _ application: UIApplication,
-        configurationForConnecting connectingSceneSession: UISceneSession,
-        options: UIScene.ConnectionOptions
-    ) -> UISceneConfiguration {
-        UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+        if let addTaskViewController = navController.topViewController as? AddTaskViewController {
+            addTaskViewController.viewContext = persistentContainer.viewContext
+        }
+
+        let window = UIWindow()
+        window.rootViewController = navController
+        window.makeKeyAndVisible()
+        self.window = window
+
+        return true
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
