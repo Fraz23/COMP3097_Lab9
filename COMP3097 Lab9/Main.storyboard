@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nav-01">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="scene-nav">
+            <objects>
+                <navigationController id="nav-01" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nav-bar-01"/>
+                    <connections>
+                        <segue destination="add-task-vc" kind="relationship" relationship="rootViewController" id="segue-root-add"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fr-nav" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-972" y="64"/>
+        </scene>
+
+        <!--Add Task-->
+        <scene sceneID="scene-add">
+            <objects>
+                <viewController id="add-task-vc" customClass="AddTaskViewController" customModule="COMP3097_Lab9" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="add-task-view">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter task name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="task-field">
+                                <rect key="frame" x="24" y="188" width="345" height="44"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="add-button">
+                                <rect key="frame" x="24" y="252" width="345" height="50"/>
+                                <state key="normal" title="Add Task &amp; View List"/>
+                                <connections>
+                                    <action selector="addTaskTapped:" destination="add-task-vc" eventType="touchUpInside" id="add-task-action"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="safe-add"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="task-field" firstAttribute="leading" secondItem="safe-add" secondAttribute="leading" constant="24" id="c1"/>
+                            <constraint firstItem="safe-add" firstAttribute="trailing" secondItem="task-field" secondAttribute="trailing" constant="24" id="c2"/>
+                            <constraint firstItem="add-button" firstAttribute="top" secondItem="task-field" secondAttribute="bottom" constant="20" id="c3"/>
+                            <constraint firstItem="add-button" firstAttribute="leading" secondItem="task-field" secondAttribute="leading" id="c4"/>
+                            <constraint firstItem="add-button" firstAttribute="trailing" secondItem="task-field" secondAttribute="trailing" id="c5"/>
+                            <constraint firstItem="task-field" firstAttribute="top" secondItem="safe-add" secondAttribute="top" constant="120" id="c6"/>
+                            <constraint firstAttribute="bottom" secondItem="add-button" secondAttribute="bottom" constant="550" id="c7"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Task" id="nav-item-add"/>
+                    <connections>
+                        <outlet property="taskTextField" destination="task-field" id="outlet-task-text"/>
+                        <segue destination="task-list-vc" kind="show" identifier="showTaskListSegue" id="segue-show-list"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fr-add" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-117" y="64"/>
+        </scene>
+
+        <!--Task List-->
+        <scene sceneID="scene-list">
+            <objects>
+                <viewController id="task-list-vc" customClass="TaskListViewController" customModule="COMP3097_Lab9" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="list-view">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="table-view">
+                                <rect key="frame" x="0.0" y="91" width="393" height="761"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskCell" textLabel="cell-label" style="IBUITableViewCellStyleDefault" id="task-cell">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="task-cell" id="task-content">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Task" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cell-label">
+                                                    <rect key="frame" x="20" y="11" width="353" height="22"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="cell-label" firstAttribute="leading" secondItem="task-content" secondAttribute="leading" constant="20" id="cell-c1"/>
+                                                <constraint firstItem="task-content" firstAttribute="trailing" secondItem="cell-label" secondAttribute="trailing" constant="20" id="cell-c2"/>
+                                                <constraint firstItem="cell-label" firstAttribute="centerY" secondItem="task-content" secondAttribute="centerY" id="cell-c3"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="safe-list"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="table-view" firstAttribute="top" secondItem="safe-list" secondAttribute="top" id="list-c1"/>
+                            <constraint firstItem="table-view" firstAttribute="leading" secondItem="safe-list" secondAttribute="leading" id="list-c2"/>
+                            <constraint firstItem="safe-list" firstAttribute="trailing" secondItem="table-view" secondAttribute="trailing" id="list-c3"/>
+                            <constraint firstItem="safe-list" firstAttribute="bottom" secondItem="table-view" secondAttribute="bottom" id="list-c4"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Task List" id="nav-item-list"/>
+                    <connections>
+                        <outlet property="tableView" destination="table-view" id="outlet-table"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fr-list" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="725" y="64"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
